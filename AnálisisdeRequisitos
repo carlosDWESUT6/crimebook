@@ -1,0 +1,101 @@
+Hola!
+Esto no es lo mío, tampoco las BBDD pero bueno he estado mirando un poco el enunciado y he intentado al menos, sacar que tablas son necesarias en cada página del proyecto. Os lo mando para que le echéis un vistazo, lo podáis corregir que seguro que me he equivocado y así poder arrancar.
+Yo crearía una clase para cada tabla cogiendo todos los campos. Luego a la hora de presentar el pantalla se filtra que se quiere poner de cada clase.
+
+PÁGINA 0 - PÁGINA DE INICIO 
+Página de inicio de la aplicación donde los usuarios introducen su usuario y contraseña para poder acceder a la parte del backend. (Realizada en la tarea de la unidad 4) 
+Usuarios
+PÁGINA 1 - LISTADO DE JUEGOS (HOME) 
+Es la página que se encuentra el usuario con permisos al acceder al backend. Habrá un menú que nos permitirá acceder a todos los elementos gestionables y además, por defecto se presentará la página Listado de Juegos, una tabla con todos los juegos que han sido creados. Los campos de la tabla son: 
+● Elemento para seleccionar el juego (radio button o lo que cada equipo desee) Juegos
+● Nombre del Juego. Juegos
+● Descripción. Juegos
+● Número de Pruebas. Juegos->Pertenencias->Pruebas(count())
+● Usuario que lo creó Juegos
+
+Botones de acción asociados: 
+● Nueva Partida. Para crear una nueva partida en base a un juego ya existente. Es necesario crearla a partir de un juego (y sólo uno) que se seleccionará de la lista. Al pinchar nos lleva a la Página 4. 
+● Nuevo Juego. Para crear un nuevo juego. Al pinchar nos lleva a la Página 5. 
+● Editar Juego. Para editar un juego existente. De cada vez sólo ha de ser posible editar un (y sólo uno) juego del listado. Al pinchar nos lleva a la Página 5. 
+● Ver Partidas. Muestra el listado de partidas asociadas a juego seleccionado.. Al pinchar nos lleva a la Página 2. 
+● Eliminar Juego. Para eliminar un juego existente. Deben poder eliminarse uno o varios juegos en una misma acción. Juegos->Pertenencias
+
+PÁGINA 2 - LISTADO DE PARTIDAS 
+Esta página muestra una tabla con todas las partidas de un juego determinado. Los campos de la tabla son: 
+● Nombre del Juego Partidas->Juegos
+● Número de equipos Partidas->Equipos(count())
+● Fecha de creación Partidas
+● Usuario que la creó Partidas
+● Finalizada Atributo calculado con fechainicio y duración de partidas
+
+Tendrá asociados 2 botones: 
+● Editar partida. Para editar una partida. Al pinchar nos lleva a la Página4. 
+● Estadísticas. Para consultar una partida finalizada. Accedemos a la página 7. 
+● Eliminar Partida. Para eliminar los datos almacenados de una partida ya finalizada. Partidas->Equipos
+
+PÁGINA 3 - LISTADO DE PRUEBAS 
+Esta página muestra una tabla con todas las pruebas que están a nuestra disposición y podemos incluir en un juego. Los campos de la tabla son: 
+● Nombre Pruebas
+● Descripción Pruebas
+● Tipo Pruebas
+● Usuario que la creó Pruebas
+
+Tendrá asociados 4 botones: 
+● Crear prueba. Para crear una prueba nueva. Al pinchar nos lleva a la Página 6. 
+● Duplicar prueba. Para crear una copia de una prueba. Nos permitirá crear una nueva prueba a partir de la adaptación a nuestras necesidades de otra ya existente. Se mantiene en la página pero añade una línea a la tabla con la prueba duplicada. Pruebas
+● Editar prueba. Para editar y modificar una prueba existente. Al pinchar nos lleva a la Página 6. 
+● Eliminar prueba. Para eliminar una prueba ya existente Pruebas->Pertenencias
+
+PÁGINA 4 - PARTIDA NUEVA/ EDITAR PARTIDA 
+En esta página se nos muestran los siguientes elementos: 
+● Nombre del Juego (será el seleccionado en la página 1, listado de juegos o de la página 2). Vble sesión
+● Duración de la partida. (el administrador selecciona o modifica el tiempo quiere que dure una partida de un determinado juego. De esta forma se pueden crear partidas del mismo juego y con diferente duración). Partidas
+● Listado de equipos. Es una tabla con dos columnas, que mostrarán el nombre de cada equipo y el código de acceso a la partida que les ha sido asignado. Partidas->Equipos
+● Formulario simple. Se utilizará para añadir equipos a la partida y consta de los siguientes elementos: 
+○ Campo de texto. Para introducir el nombre del equipo. Partidas->Equipos
+○ Botón Añadir. Para enviar el contenido del formulario. 
+○ No son necesarios más elementos ya que el código de acceso se generará de manera automática. 
+● Botón Guardar Partida. Partidas->Equipos
+
+PÁGINA 5 - JUEGO NUEVO/EDITAR JUEGO 
+La misma página sirve para ambas acciones. Al crear un juego nuevo el formulario aparecerá con todos los campos vacíos y tendremos que ir rellenándolos; al editarlo los campos del formulario estarán cumplimentados con la información traída del servidor, que podremos modificar. 
+En esta página, que básicamente es un formulario, se nos muestran los siguientes elementos: 
+● Nombre del Juego (Campo de texto) Juegos
+● Descripción breve (Campo de texto) Juegos
+● Descripción extendida (Campo de texto) Juegos
+● Listado de pruebas (Tabla). Listado de pruebas que se tienen que resolver en este juego. Elementos asociados a la tabla: 
+○ Añadir prueba. Para añadir al juego una prueba del banco de pruebas ya existentes. (página 3) Juegos->Pertenencias->Pruebas
+○ Eliminar prueba. Para quitar del juego una prueba. Juegos->Pertenencias->Pruebas
+● Botón Enviar/Guardar. Para enviar al servidor los datos creados/modificados. 
+
+PÁGINA 6 - PRUEBA NUEVA/EDITAR PRUEBA 
+Al igual que en la página de los juegos, ésta también es un único formulario que sirve para ambas acciones, mostrándose vacío o cumplimentado según estemos en la creación o edición de una prueba. En esta página, el formulario se compone de los siguientes elementos: 
+● Nombre (Campo de texto) Pruebas
+● URL (Campo de texto) Pruebas
+● Descripción breve (Campo de texto) Pruebas
+● Descripción extendida/Enunciado de la prueba (Campo de texto) Pruebas
+● Tipo (Lista desplegable: normal, final) Pruebas
+● Tabla con las posibles respuestas/soluciones Pruebas->Respuestas
+● Campo de texto para añadir una solución más y botón añadir (ejemplo de soluciones: Solución 1: tres cuartos. Solución 2: ¾) Pruebas->Respuestas
+● Listado de Pistas (Tabla). Listado de pistas disponibles para dicha prueba. Elementos asociados a la tabla: 
+○ Añadir pista. Para añadir al juego una nueva pista (página 8) Pruebas->Pistas
+○ Eliminar pista. Para quitar una pista de la prueba. Pruebas->Pistas
+
+PÁGINA 7 - ESTADÍSTICAS 
+Esta página muestra una tabla con todos los datos almacenados de una partida concreta, partidas que ya ha sido jugada y finalizada. Los campos de la tabla son: 
+● Equipo Equipos
+● Código Acceso Equipos
+● Fecha Inicio (de la partida) Equipos->Partidas
+● Duración (de la partida) Equipos->Partidas
+● Pruebas. Para cada equipo se muestran las pruebas que ha resuelto y de éstas: 
+○ Nombre Equipos->Resoluciones
+○ Intentos Equipos->Resoluciones
+
+PÁGINA 8 - CREAR PISTA 
+Esta página muestra un formulario para crear una pista nueva para una prueba determinada (prueba descrita en la página 6). El formulario se compone de los siguientes elementos: 
+● Texto con la pista Pistas
+● Tiempo (tiempo desde el que puede acceder a la pista, una vez intentada la prueba) Pistas
+● Intento (Número de intentos realizados para solucionar la prueba que sirven para desbloquear la pista. Ejemplo, con valor 1 en este campo y valor 3 en el campo Tiempo, significa que después de haber pasado 3 minutos de haber realizado el primer intento de la prueba ya se podrá acceder a la pista) Pistas
+● Botón para guardar la pista y volver a la página 6 donde estarán todos los datos de la prueba correspondiente 
+● Botón cancelar para volver a la página 6 con todos los datos de la prueba que se estaba creando o editando. 
+
